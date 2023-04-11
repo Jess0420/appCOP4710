@@ -1,7 +1,7 @@
 import logo from './logo.svg'; 
 import {BrowserRouter, Route, Routes} from 'react-router-dom'; 
 import {react} from 'react';  
-import Home from './pages/home';  
+import Home from './pages/home';
 import Login from './pages/login';
 import Navbar from './components/navbar';
 

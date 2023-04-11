@@ -5,19 +5,8 @@
     align-self: center;
   } 
 
-  .container {
+.home {
     display: flex; 
     justify-content: center; 
     flex-direction: column;
   } 
-
-  
-.loginField {
-    width: auto; 
-    padding: 5px; 
-    margin: auto;  
-    margin-bottom: 10px; 
-    border-radius: 10px;
-
-}   
-
