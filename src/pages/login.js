@@ -5,7 +5,7 @@ function Login() {
     const [password, setPassword] = useState("");  
     return ( 
         <div className='container'>
-        <h1 className="text">Welcome Back! Login Here!</h1> 
+        <h1 className="text">Account Login!</h1> 
         <input type="text" 
       className="loginField" 
       placeholder="User Name"
@@ -16,7 +16,8 @@ function Login() {
       placeholder="Password" 
        onChange={(e) => {setPassword(e.target.value);
        }}></input>
-      <button className= "login">Login</button>
+      <button className= "loginButton">Login</button> 
+      <button className="registerButton">New here? Click here to register</button>
     
         </div>
     )
