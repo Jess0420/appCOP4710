@@ -1,0 +1,12 @@
+.text {
+    color: black; 
+    font-size:75px; 
+    justify-content: center;  
+    align-self: center;
+  } 
+
+.register {
+    display: flex; 
+    justify-content: center; 
+    flex-direction: column;
+  } 
