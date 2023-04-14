@@ -15,8 +15,8 @@ export async function getUsers(){
     return result;
 }
 
-export async function getUser(id){
-    const [user] = await pool.query(`SELECT * FROM users WHERE user_id = ?`, [id])
+export async function getUser(username, password){
+    const [user] = await pool.query(`SELECT * FROM users WHERE username = ? AND password = ?`, [username, password])
     return user[0] // returns undefined if no user found
 }
 
@@ -28,5 +28,3 @@ export async function createUser(user_level, username, password, email){
     VALUES (? , ? , ? , ? ,?)` , [user_level, username, password,email,now])
     return result
 }
-const createuser = await createUser('super_admin', 'diti85','COP4710', 'bashaditi@gmail.com')
-console.log(createuser);
