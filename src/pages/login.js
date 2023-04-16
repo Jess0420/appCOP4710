@@ -36,7 +36,17 @@ function Login() {
       }).catch(e => {
         console.log(e);  
         const errorMessage = e.response // assuming the server returns an error message in the "message" field of the response data
-      });
+      }); 
+
+      if (user_level == 'admin') {
+        navigate('/admin'); 
+      }
+      if (user_level == 'student') {
+        navigate('/student'); 
+      } 
+      if(user_level == 'super_admin') {
+        navigate('/super')
+      }
     }
 
 
