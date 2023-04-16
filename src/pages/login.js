@@ -24,7 +24,7 @@ function Login() {
     }) 
 
     const loginAuth = () => {
-      Axios.post('http://localhost' + PORT + '/api/login', {
+      Axios.post('http://localhost:' + PORT + '/api/login', {
         username: username, 
         password: password, 
         headers: { 'Content-Type': 'application/json' },
