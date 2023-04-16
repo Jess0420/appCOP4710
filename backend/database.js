@@ -20,6 +20,11 @@ export async function getUser(id){
     return user[0] // returns undefined if no user found
 }
 
+export async function login(username, password){
+    const [user] = await pool.query(`SELECT * FROM users WHERE username = ? AND password = ?`, [username, password])
+    return user[0] // returns undefined if no user found
+}
+
 export async function createUser(user_level, username, password, email){
     let date = new Date();
     let now =  date.getFullYear()+'-'+date.getMonth()+'-'+date.getDate()+' '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds()

@@ -16,4 +16,11 @@ app.get("/api/v1/:id", async (req,res) => {
     const id  = req.params.id
     const user = await getUser(id)
     res.send(notes)
+}) 
+
+app.post("/login", async (req, res) => {
+    const username = req.params.username 
+    const password = req.params.password 
+    const user = await login(username, password) 
+    res.send(notes)
 })

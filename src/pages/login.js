@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import '../stylesheets/login.css' 
 function Login() {  
     const [username, setUsername] = useState(""); 
-    const [password, setPassword] = useState("");   
+    const [password, setPassword] = useState("");    
+    const [isLoggedIn, setLoggedIn] = useState(""); 
 
     let navigate = useNavigate()
 
