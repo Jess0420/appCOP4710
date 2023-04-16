@@ -24,13 +24,13 @@ function Login() {
     }) 
 
     const loginAuth = () => {
-      Axios.post('http://localhost:' + PORT + '/api/login', {
+      Axios.post('http://localhost' + PORT + '/api/login', {
         username: username, 
         password: password, 
         headers: { 'Content-Type': 'application/json' },
       }).then((response) => {
-        console.log(response.data);   
-        console.log('loggedin')
+        console.log("Log in Succesful")
+        //do stuff here
       }).catch(e => {
         console.log(e);  
         const errorMessage = e.response // assuming the server returns an error message in the "message" field of the response data
@@ -52,7 +52,7 @@ function Login() {
       placeholder="Password" 
        onChange={(e) => {setPassword(e.target.value);
        }}></input>
-      <button onClick={loginAuth}className= "loginButton">Login</button> 
+      <button onClick={loginAuth} className= "loginButton">Login</button> 
       <button className="registerButton" onClick={routeToRegister}>New here? Click here to register</button>
     
         </div>

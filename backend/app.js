@@ -1,11 +1,12 @@
 import express from 'express'
+import cors from 'cors'
 import  {getUser} from './database.js' 
 import { login } from './database.js'
 
 const app = express()
 app.use(express.json())
+app.use(cors())
 const PORT = 8080 ;
-
 
 
 app.use( (err, req, res, next) => {
@@ -27,5 +28,8 @@ app.post("/api/login", async (req, res) => {
     const username = req.body.username 
     const password = req.body.password 
     const user = await login(username, password) 
+    if (user == undefined){
+      res.status(404).send();
+    }
     res.status(200).send(user)
 })
