@@ -1,6 +1,5 @@
 import express from 'express'
-import  {getUser} from './database.js' 
-import { login } from './database.js'
+import  {getPublicEvents, getUserEvents, login} from './database.js'
 
 const app = express()
 
@@ -15,15 +14,30 @@ app.listen(8080, () => {
     console.log("server running on port 8080")
 })
 
-app.get("/api/v1/:id", async (req,res) => {
-    const id  = req.params.id
-    const user = await getUser(id)
-    res.send(notes)
-}) 
-
 app.post("/login", async (req, res) => {
     const username = req.params.username 
     const password = req.params.password 
     const user = await login(username, password) 
-    res.send(notes)
+    res.send(user)
+})
+
+
+app.post("/register", async (req, res) => {
+  const username = req.body.username 
+  const password = req.body.password 
+  const user = await login(username, password) 
+  res.send(user)
+})
+app.get("/api/v1/publicevents", async (req,res) => {
+  const events = await getPublicEvents()
+  console.log(events);
+  res.status(201).send(events)
+}) 
+
+
+app.get("/api/v1/userevents/:id",async(req,res)=>{
+  console.log(req.params.id)
+  const events = await getUserEvents(req.params.id)
+  console.log(events);
+  res.status(201).send(events)
 })
