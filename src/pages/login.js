@@ -1,16 +1,43 @@
-import React, {useState} from "react"; 
+import React, {useState} from "react";  
+import  Axios  from "axios";
 import { useNavigate } from "react-router-dom"; 
 import '../stylesheets/login.css' 
+const PORT = 8080;
+
 function Login() {  
     const [username, setUsername] = useState(""); 
-    const [password, setPassword] = useState("");    
+    const [password, setPassword] = useState("");     
+    const [user_level, setuser_Level] = useState(""); 
     const [isLoggedIn, setLoggedIn] = useState(""); 
 
     let navigate = useNavigate()
 
     const routeToRegister = () => {
       navigate('/register');
-    };
+    };  
+
+    let data = JSON.stringify({
+      username: username, 
+      password: password,  
+      user_level: user_level, 
+      
+    }) 
+
+    const loginAuth = () => {
+      Axios.post('http://localhost:' + PORT + '/api/login', {
+        username: username, 
+        password: password, 
+        headers: { 'Content-Type': 'application/json' },
+      }).then((response) => {
+        console.log(response.data);   
+        console.log('loggedin')
+      }).catch(e => {
+        console.log(e);  
+        const errorMessage = e.response // assuming the server returns an error message in the "message" field of the response data
+      });
+    }
+
+
 
     return ( 
         <div className='container'>
@@ -25,7 +52,7 @@ function Login() {
       placeholder="Password" 
        onChange={(e) => {setPassword(e.target.value);
        }}></input>
-      <button className= "loginButton">Login</button> 
+      <button onClick={loginAuth}className= "loginButton">Login</button> 
       <button className="registerButton" onClick={routeToRegister}>New here? Click here to register</button>
     
         </div>

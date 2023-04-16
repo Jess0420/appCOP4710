@@ -3,13 +3,13 @@ import  {getUser} from './database.js'
 import { login } from './database.js'
 
 const app = express()
-
+const PORT = 8080 || 3000;
 app.use((err, req, res, next) => {
     console.error(err.stack)
     res.status(500).send('Something broke!')
   })
 
-app.listen(8080, () => {
+app.listen(PORT, () => {
     console.log("server running on port 8080")
 })
 
@@ -19,7 +19,7 @@ app.get("/api/v1/:id", async (req,res) => {
     res.send(user)
 }) 
 
-app.post("/login", async (req, res) => {
+app.post("/api/login", async (req, res) => {
     const username = req.params.username 
     const password = req.params.password 
     const user = await login(username, password) 

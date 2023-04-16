@@ -33,5 +33,5 @@ export async function createUser(user_level, username, password, email){
     VALUES (? , ? , ? , ? ,?)` , [user_level, username, password,email,now])
     return result
 }
-const createuser = await createUser('super_admin', 'diti85','COP4710', 'bashaditi@gmail.com')
-console.log(createuser);
+// const createuser = await createUser('super_admin', 'diti85','COP4710', 'bashaditi@gmail.com')
+// console.log(createuser);
