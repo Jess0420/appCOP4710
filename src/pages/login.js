@@ -30,7 +30,9 @@ function Login() {
         headers: { 'Content-Type': 'application/json' },
       }).then((response) => {
         console.log("Log in Succesful")
-        //do stuff here
+        console.log("Role", response.data.user_level); 
+        setuser_Level(response.data.user_level) 
+        console.log("Role is", user_level)
       }).catch(e => {
         console.log(e);  
         const errorMessage = e.response // assuming the server returns an error message in the "message" field of the response data
