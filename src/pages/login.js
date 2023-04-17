@@ -30,24 +30,25 @@ function Login() {
         password: password, 
         headers: {'Content-Type': 'application/json'},
       }).then((response) => {
-        console.log("Log in Succesful")
-        console.log("Role", response.data.user_level); 
+        console.log("Log in Succesful") 
         setuser_Level(response.data.user_level) 
-        console.log("Role is", user_level)
+        console.log("Role", user_level);  
+      
+        if (response.data.user_level === 'admin') {
+          navigate('/admin', { state: { username: username } });  
+        }
+        else if (response.data.user_level === 'student') {
+          navigate('/student', { state: { username: username } }); 
+        } 
+        else if (response.data.user_level === 'super_admin') {
+          navigate('/super');
+        }
       }).catch(e => {
         console.log(e);  
         const errorMessage = e.response // assuming the server returns an error message in the "message" field of the response data
       }); 
 
-      if (user_level == 'admin') {
-        navigate('/admin', {state: {username: username}});  
-      }
-      if (user_level == 'student') {
-        navigate('/student', {state: {username: username} }); 
-      } 
-      if(user_level == 'super_admin') {
-        navigate('/super')
-      }
+   
     }
 
 
