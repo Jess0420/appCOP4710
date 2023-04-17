@@ -25,14 +25,29 @@ export async function login(username, password){
     return user[0] // returns undefined if no user found
 }
 
-export async function createUser(user_level, username, password, email){
+export async function register(firstname, lastname, user_level, username, password, email, university_id){
+    const [new_user] = await pool.query(`SELECT * FROM users WHERE username = ? OR email = ?`, [username, email])
+    console.log(new_user[0])
+    if(new_user[0] === undefined){
+        let date = new Date();
+        let now =  date.getFullYear()+'-'+date.getMonth()+'-'+date.getDate()+' '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds()
+        const result = await pool.query(`
+        INSERT INTO users(firstname, lastname, user_level, username, password, email, university_id, created_at)
+        VALUES (? , ? , ? , ? ,?, ?, ? , ?)` , [firstname, lastname, user_level, username, password,email,university_id, now])
+        return result
+    }
+    return undefined
+}
+
+export async function createUser(firstname, lastname, user_level, username, password, email, university_id){
     let date = new Date();
     let now =  date.getFullYear()+'-'+date.getMonth()+'-'+date.getDate()+' '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds()
     const result = await pool.query(`
-    INSERT INTO users(user_level, username, password, email, created_at)
-    VALUES (? , ? , ? , ? ,?)` , [user_level, username, password,email,now])
+    INSERT INTO users(firstname, lastname, user_level, username, password, email, university_id, created_at)
+    VALUES (? , ? , ? , ? ,?, ?, ? , ?)` , [firstname, lastname, user_level, username, password,email,university_id, now])
     return result
 }
+
 
 export async function getPublicEvents(){
     const [events] = await pool.query(`SELECT * FROM events WHERE is_public = true`)

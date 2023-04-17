@@ -1,7 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import  {getUser} from './database.js' 
-import { login } from './database.js'
+import  {getUser, login , register, getPublicEvents, getUserEvents} from './database.js'
 
 const app = express()
 app.use(express.json())
@@ -36,12 +35,19 @@ app.post("/api/login", async (req, res) => {
 })
 
 
-app.post("/register", async (req, res) => {
-  const username = req.body.username 
-  const password = req.body.password 
-  const user = await login(username, password) 
-  res.send(user)
+app.post("/api/register", async (req, res) => {
+  const {username, password, email, firstname, lastname, university_id, user_level} = req.body;
+  if (!username || !password || !email || !firstname || !lastname || !university_id) {
+    return res.status(400).json({ message: 'Missing required fields' });
+  }
+  const user = await register(firstname, lastname, user_level, username, password, email, university_id) 
+  if (user === undefined){
+    res.status(500).send();
+  }
+  res.status(200).send(user)
 })
+
+
 app.get("/api/publicevents", async (req,res) => {
   const events = await getPublicEvents()
   console.log(events);
