@@ -39,8 +39,18 @@
   border-color: transparent; 
 } 
 
+.loginButton:hover 
+{
+  cursor: pointer;
+}
 
-.registerButton 
+.loginButton:active 
+{
+  background-color: gray; 
+  color: black;
+}
+
+.regButton 
 {
   color: black;
   justify-content: center;
@@ -55,5 +65,13 @@
   margin-top: 20px; 
   margin-bottom: 20px;
   border-color: transparent; 
+}  
+
+
+.regButton:hover 
+{
+  color: blue;
+  cursor: pointer;
+ 
 }
 

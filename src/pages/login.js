@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import  Axios  from "axios";
 import { useNavigate } from "react-router-dom"; 
 import '../stylesheets/login.css' 
+
 const PORT = 8080;
 
 function Login() {  
@@ -53,7 +54,7 @@ function Login() {
 
     return ( 
         <div className='container'>
-        <h1 className="text">Account Login!</h1> 
+        <h1 className="title">Account Login!</h1> 
         <input type="text" 
       className="loginField" 
       placeholder="User Name"
@@ -65,7 +66,7 @@ function Login() {
        onChange={(e) => {setPassword(e.target.value);
        }}></input>
       <button onClick={loginAuth} className= "loginButton">Login</button> 
-      <button className="registerButton" onClick={routeToRegister}>New here? Click here to register</button>
+      <button className="regButton" onClick={routeToRegister}>New here? Click here to register</button>
     
         </div>
     )
