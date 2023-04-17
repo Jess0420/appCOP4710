@@ -48,12 +48,20 @@ export async function createUser(firstname, lastname, user_level, username, pass
     return result
 }
 
-
+export async function joinRSO(rsoId, userId){
+    const joinRsoQuery = `INSERT INTO rso_memberships (rso_id, user_id) VALUES ('${rsoId}', '${userId}')`;
+    try{
+        const result = await pool.query(joinRsoQuery)
+        return result
+    }catch(err){
+        console.error(err);
+        return undefined
+    }
+}
 export async function getPublicEvents(){
     const [events] = await pool.query(`SELECT * FROM events WHERE is_public = true`)
     return events // returns undefined if no events found
 }
-
 
 export async function getUserEvents(user_id){
     const [events] = await pool.query(`SELECT * FROM events WHERE is_public = 1 
@@ -65,4 +73,36 @@ export async function getUserEvents(user_id){
 export async function getUniversities(){
     const [events] = await pool.query(`SELECT * FROM universities`)
     return events // returns undefined if no unis found
+}
+
+
+export async function getAllRSOs(){
+    const [rsos] = await pool.query(`SELECT * FROM RSOs`)
+    return rsos;
+}
+
+export async function getEventComments(event_id){
+    const [rsos] = await pool.query(`SELECT * FROM event_comments WHERE event_id = ?`, event_id)
+    return rsos;
+}
+
+export async function getEventsByRSO(user_id){
+    const [rsosRows] = await pool.query(
+        `SELECT rso_id FROM rso_memberships WHERE user_id = ?`,
+        [user_id]
+      );
+    
+      // Extract the RSO IDs from the query result
+      const rsoIds = rsosRows.map((row) => row.rso_id);
+    
+      // Query the database to find all events associated with the RSOs
+      const [eventsRows] = await pool.execute(
+        `SELECT * FROM events WHERE is_approved = true AND rso_id IN (?)`,
+        [rsoIds]
+      );
+}
+
+export async function getSingleEvent(event_id){
+    const [event] = await pool.query(`SELECT * FROM events WHERE event_id = ?`,event_id)
+    return event[0];
 }

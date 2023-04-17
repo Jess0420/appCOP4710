@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import  {getUser, login , register, getPublicEvents, getUserEvents, getUniversities} from './database.js'
+import  {getUser, login , register, getPublicEvents, getUserEvents, getUniversities, getSingleEvent, getEventComments, getEventsByRSO, joinRSO} from './database.js'
 
 const app = express()
 app.use(express.json())
@@ -62,6 +62,41 @@ app.get("/api/userevents/:id",async(req,res)=>{
 })
 
 
+app.get("/api/event/:id",async(req,res)=>{
+  console.log(req.params.id)
+  const events = await getSingleEvent(req.params.id)
+  if (events === undefined){
+    res.status(404).send();
+  }
+  res.status(201).send(events)
+})
+
+app.get("/api/eventcomments/:id",async(req,res)=>{
+  console.log(req.params.id)
+  const event_comments = await getEventComments(req.params.id)
+  if (event_comments === undefined){
+    res.status(404).send();
+  }
+  res.status(201).send(event_comments)
+})
+
+app.get("/api/allrsos",async(req,res)=>{
+  const rsos = await getEventComments(req.params.id)
+  if (rsos === undefined){
+    res.status(404).send();
+  }
+  res.status(201).send(rsos)
+})
+
+app.get("/api/eventcomments/:id",async(req,res)=>{
+  const event_comments = await getEventComments(req.params.id)
+  if (event_comments === undefined){
+    res.status(404).send();
+  }
+  res.status(201).send(event_comments)
+})
+
+
 app.get("/api/universities", async (req,res) => {
   try{
     const universities = await getUniversities()
@@ -71,3 +106,30 @@ app.get("/api/universities", async (req,res) => {
     res.status(500).send()
   }
 }) 
+
+app.get('/api/rsoevents/:id' , async (req,res) => {
+    const rsoevents = await getEventsByRSO()
+    if(rsoevents === undefined){
+      res.status(404).send();
+    }
+    res.status(201).send(rsoevents);
+})
+
+// API endpoint to join an existing RSO
+app.post('/api/joinrso', (req, res) => {
+  const { rsoId, userId } = req.body;
+  const result = joinRSO(rsoId, userId)    
+  if(result === undefined){
+    res.status(500).send();
+  }
+  res.status(201).send(result);
+})
+
+// API endpoint to create a new RSO
+app.post('/api/createrso', (req, res) => {
+  const { name, email, admin_username } = req.body;
+
+  // Find university domain from admin email
+  const domain = email.split('@')[1];
+
+});
