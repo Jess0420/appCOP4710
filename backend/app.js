@@ -31,7 +31,6 @@ app.post("/api/login", async (req, res) => {
       res.status(404).send();
     }
     res.status(200).send(user)
-    res.send(user)
 })
 
 
