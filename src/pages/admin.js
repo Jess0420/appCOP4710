@@ -1,11 +1,15 @@
 import '../stylesheets/App.css'
-import '../stylesheets/home.css' 
-import StudentNavbar from '../components/studentNavBar';
-function Admin() { 
+import '../stylesheets/home.css'  
+import { useLocation } from 'react-router-dom';
+import AdminNavbar from '../components/adminNavBar'; 
+
+function Admin() {  
+    const location = useLocation(); 
+    const username = location.state?.username; 
 return (   
     <div> 
-        <StudentNavbar/>
-    <h1 className='text'>Public Events</h1> 
+        <AdminNavbar/>
+    <h1 className='text'>Welcome, {username} </h1> 
     </div>
 )
 } 

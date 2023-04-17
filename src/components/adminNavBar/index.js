@@ -8,7 +8,7 @@ import {
 } from "./NavbarElements";
 
 // Navbar creation
-const StudentNavbar = () => {
+const AdminNavbar = () => {
 
     return (
         <>
@@ -23,13 +23,19 @@ const StudentNavbar = () => {
                     </NavLink> 
                     <NavLink to="/rsoEvents" activeStyle>
                         Your Organization Events                        
+                    </NavLink>  
+                    <NavLink to="/createEvents" activeStyle>
+                        Create an Event                        
                     </NavLink> 
 
                 </NavMenu>
-           
+                <NavBtn>
+                    <NavBtnLink to='/login'>Login </NavBtnLink>
+                </NavBtn>
+
             </Nav>
         </>
     );
 };
 
-export default StudentNavbar
+export default AdminNavbar
