@@ -27,7 +27,7 @@ function Login() {
       Axios.post('http://localhost:' + PORT + '/api/login', {
         username: username, 
         password: password, 
-        headers: { 'Content-Type': 'application/json' },
+        headers: {'Content-Type': 'application/json'},
       }).then((response) => {
         console.log("Log in Succesful")
         console.log("Role", response.data.user_level); 
