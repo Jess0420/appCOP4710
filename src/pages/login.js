@@ -39,10 +39,10 @@ function Login() {
       }); 
 
       if (user_level == 'admin') {
-        navigate('/admin'); 
+        navigate('/admin', {state: {username: username}});  
       }
       if (user_level == 'student') {
-        navigate('/student'); 
+        navigate('/student', {state: {username: username} }); 
       } 
       if(user_level == 'super_admin') {
         navigate('/super')

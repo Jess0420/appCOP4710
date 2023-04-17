@@ -7,7 +7,9 @@ import Register from './pages/register';
 import Navbar from './components/navbar'; 
 import Students from './pages/student';
 import Admin from './pages/admin'; 
-import SuperAdmin from './pages/superadmin';
+import SuperAdmin from './pages/superadmin'; 
+import Events from './pages/events'; 
+import RSOEvents from './pages/rsoEvents';
 
 function App() {
   return (
@@ -18,7 +20,9 @@ function App() {
     <Route path='/register' element={<Register/>}/> 
     <Route path='/student' element={<Students/>}/> 
     <Route path='/admin' element={<Admin/>} /> 
-    <Route path='/super' element={<SuperAdmin/>}/>
+    <Route path='/super' element={<SuperAdmin/>}/> 
+    <Route path='/events' element={<Events/>}/> 
+    <Route path='/rsoEvents' element={<RSOEvents/>}/>
     </Routes>
     </BrowserRouter>
   );
