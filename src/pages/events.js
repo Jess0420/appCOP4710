@@ -1,7 +1,7 @@
 import '../stylesheets/App.css'
 import '../stylesheets/home.css'
 import Navbar from '../components/navbar';
-function Home() { 
+function Events() { 
 return (  
     <div className='home'>
           <Navbar />
@@ -9,4 +9,4 @@ return (
     </div>
 )
 } 
-export default Home;
+export default Events;
