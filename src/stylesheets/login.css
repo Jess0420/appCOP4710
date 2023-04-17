@@ -39,6 +39,12 @@
   border-color: transparent; 
 } 
 
+.loginButton:hover 
+{
+  cursor: pointer;
+} 
+
+
 
 .registerButton 
 {
@@ -54,6 +60,13 @@
   padding: 14px 42px;
   margin-top: 20px; 
   margin-bottom: 20px;
-  border-color: transparent; 
+  border-color: transparent;  
+
+} 
+
+.registerButton:hover 
+{
+  color: blue;
+  cursor: pointer;
 }
 
