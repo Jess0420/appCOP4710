@@ -15,8 +15,8 @@ export async function getUsers(){
     return result;
 }
 
-export async function getUser(id){
-    const [user] = await pool.query(`SELECT * FROM users WHERE user_id = ?`, [id])
+export async function getUser(username, password){
+    const [user] = await pool.query(`SELECT * FROM users WHERE username = ? AND password = ?`, [username, password])
     return user[0] // returns undefined if no user found
 }
 
@@ -33,5 +33,16 @@ export async function createUser(user_level, username, password, email){
     VALUES (? , ? , ? , ? ,?)` , [user_level, username, password,email,now])
     return result
 }
-// const createuser = await createUser('super_admin', 'diti85','COP4710', 'bashaditi@gmail.com')
-// console.log(createuser);
+
+export async function getPublicEvents(){
+    const [events] = await pool.query(`SELECT * FROM events WHERE is_public = true`)
+    return events // returns undefined if no events found
+}
+
+
+export async function getUserEvents(user_id){
+    const [events] = await pool.query(`SELECT * FROM events WHERE is_public = 1 
+        OR (host_university = (SELECT university_id FROM users WHERE user_id = ?) AND is_public = 0)  
+        OR (rso_id IN (SELECT rso_id FROM rso_memberships WHERE user_id = ?)   AND is_public = 0)`, [user_id,user_id])
+       return events 
+}
