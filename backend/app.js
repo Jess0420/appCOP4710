@@ -42,14 +42,14 @@ app.post("/register", async (req, res) => {
   const user = await login(username, password) 
   res.send(user)
 })
-app.get("/api/v1/publicevents", async (req,res) => {
+app.get("/api/publicevents", async (req,res) => {
   const events = await getPublicEvents()
   console.log(events);
   res.status(201).send(events)
 }) 
 
 
-app.get("/api/v1/userevents/:id",async(req,res)=>{
+app.get("/api/userevents/:id",async(req,res)=>{
   console.log(req.params.id)
   const events = await getUserEvents(req.params.id)
   console.log(events);
