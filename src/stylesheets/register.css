@@ -3,6 +3,7 @@
     font-size:60px; 
     justify-content: center;  
     align-self: center;
+    align-content: center;
   } 
 .text {
   color: black;
