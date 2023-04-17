@@ -61,3 +61,8 @@ export async function getUserEvents(user_id){
         OR (rso_id IN (SELECT rso_id FROM rso_memberships WHERE user_id = ?)   AND is_public = 0)`, [user_id,user_id])
        return events 
 }
+
+export async function getUniversities(){
+    const [events] = await pool.query(`SELECT * FROM universities`)
+    return events // returns undefined if no unis found
+}

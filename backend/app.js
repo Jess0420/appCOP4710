@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import  {getUser, login , register, getPublicEvents, getUserEvents} from './database.js'
+import  {getUser, login , register, getPublicEvents, getUserEvents, getUniversities} from './database.js'
 
 const app = express()
 app.use(express.json())
@@ -61,3 +61,14 @@ app.get("/api/userevents/:id",async(req,res)=>{
   console.log(events);
   res.status(201).send(events)
 })
+
+
+app.get("/api/universities", async (req,res) => {
+  try{
+    const universities = await getUniversities()
+    res.status(200).send(universities);
+  }catch(err){
+    console.log(err)
+    res.status(500).send()
+  }
+}) 

@@ -1,12 +1,44 @@
-.text {
+.title {
     color: black; 
-    font-size:75px; 
+    font-size:60px; 
     justify-content: center;  
     align-self: center;
   } 
-
+.text {
+  color: black;
+  font-size: 20px;
+  align-text: center;
+}
 .register {
     display: flex; 
     justify-content: center; 
     flex-direction: column;
   } 
+.registerButton 
+  {
+    color: white;
+    justify-content: center;
+    display: flex;
+    background-color: goldenrod;
+    border-radius: 12px;
+    font-size: 32px;
+    align-items: center;
+    align-self: center;
+    flex-direction: column;
+    padding: 14px 42px;
+    margin-top: 20px; 
+    margin-bottom: 20px;
+    border-color: transparent; 
+    cursor: pointer;
+  } 
+  
+.redirect {
+  display: flex;  
+  align-self: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  justify-content: center; 
+  align-content: center;
+  width: 300px;
+}
