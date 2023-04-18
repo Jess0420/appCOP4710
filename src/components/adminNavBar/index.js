@@ -19,19 +19,16 @@ const AdminNavbar = () => {
                         Public Events
                     </NavLink> 
                     <NavLink to="/universityEvents" activeStyle>
-                        University Events                        
+                        My Events                      
                     </NavLink> 
-                    <NavLink to="/rsoEvents" activeStyle>
-                        Your Organization Events                        
-                    </NavLink>  
                     <NavLink to="/createEvents" activeStyle>
                         Create an Event                        
                     </NavLink> 
 
                 </NavMenu>
-                <NavBtn>
+                {/* <NavBtn>
                     <NavBtnLink to='/login'>Login </NavBtnLink>
-                </NavBtn>
+                </NavBtn> */}
 
             </Nav>
         </>

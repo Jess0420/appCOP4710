@@ -43,7 +43,7 @@ function Login() {
         console.log("Role", user_level);
   
         if (data.user_level === "admin") {
-          navigate("/admin", { state: { username: username, university_id: university } });
+          navigate("/admin", { state: { user: data } });
         } else if (data.user_level === "student") {
           navigate("/student", { state: { user: data } }); // pass the user object as state parameter
         } else if (data.user_level === "super_admin") {
@@ -58,7 +58,7 @@ function Login() {
     console.log(university);
     console.log("Role", user_level);
   }; 
-  
+
   return (
     <div className="container">
       <Navbar />

@@ -2,7 +2,8 @@
 import React, {useEffect, useState} from "react";  
 import  Axios  from "axios";
 import { useNavigate } from "react-router-dom"; 
-import '../stylesheets/register.css'
+import '../stylesheets/register.css' 
+import Navbar from "../components/navbar";
 let PORT = 8080
 function Register() { 
     let navigate = useNavigate()
@@ -60,7 +61,8 @@ function Register() {
     }
 
 return (  
-    <div className='register'>
+    <div className='register'> 
+    <Navbar/>
     <h1 className='title'>Account Registration</h1>
     <input required type="text" 
       className="loginField" 
