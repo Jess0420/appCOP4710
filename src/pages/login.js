@@ -1,7 +1,8 @@
 import React, {useState} from "react";  
 import  Axios  from "axios";
 import { useNavigate } from "react-router-dom"; 
-import '../stylesheets/login.css' 
+import '../stylesheets/login.css'  
+import Navbar from "../components/navbar";
 
 const PORT = 8080;
 
@@ -55,6 +56,7 @@ function Login() {
 
     return ( 
         <div className='container'>
+          <Navbar/>
         <h1 className="title">Account Login!</h1> 
         <input type="text" 
       className="loginField" 

@@ -13,7 +13,7 @@ function Events() {
 const [events, setEvents] = useState([]);  
 
 useEffect(() => { 
-    Axios.get('http://localhost:' + PORT + '/api/publicevents')
+    Axios.get('http://localhost:' + PORT + '/api/userevents/:id')
       .then(response => {
         setEvents(response.data);
       })
@@ -25,10 +25,11 @@ useEffect(() => {
 
 
   return (
-    
-    
-    <div className="post-container">
+    <div className='container'>
+      <Navbar/>
     <h1 className='title'> Public Events</h1>
+    <div className="post-container">
+   
       {events.map(event => (
         <div className="post" key={event.id}>
           <div className="post-header">
@@ -41,7 +42,8 @@ useEffect(() => {
           </div>
         </div>
       ))}
-    </div> 
+    </div>  
+    </div>
        
   );
 }
