@@ -6,10 +6,12 @@ import {
     NavBtn,
     NavBtnLink,
 } from "./NavbarElements";
-import UserContext from '../UserContext';
+import UserContext from '../UserContext'; 
+import { useNavigate } from 'react-router-dom';
 
 // Navbar creation
-const StudentNavbar = () => { 
+const EventsNavbar = () => {  
+    const navigate = useNavigate();
     const user = useContext(UserContext);
     console.log(user);
     
@@ -18,7 +20,9 @@ const StudentNavbar = () => {
     };
     const user_dict = {
         user_info: user
-    }
+    } 
+
+    
 
     return (
         <>
@@ -27,13 +31,16 @@ const StudentNavbar = () => {
                     <NavLink to="/events" activeStyle>
                         Public Events
                     </NavLink> 
-                    <NavLink to={ university_route } state={user_dict} activeClassName="active">
-                        MyEvents
-                    </NavLink>
+                   
                 </NavMenu>
+
+                <NavBtn onClick={() => navigate(-1)}>
+                    Go Back
+     
+                </NavBtn>
             </Nav>
         </>
     );
 };
 
-export default StudentNavbar
+export default EventsNavbar

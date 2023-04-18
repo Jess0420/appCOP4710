@@ -10,8 +10,12 @@ import Admin from './pages/admin';
 import SuperAdmin from './pages/superadmin'; 
 import Events from './pages/events'; 
 import RSOEvents from './pages/rsoEvents';
-import UniversityEvents from './pages/universityEvents'; 
-import CreateEvents from './pages/createEvents';
+import CreateEvents from './pages/createRSOEvent'; 
+import MyEvents from './pages/myEvents';
+import SingleEvents from './pages/singleEvent'; 
+import CreatePublicEvents from './pages/createPublicEvent'; 
+import CreatePrivateEvents from './pages/createPrivateEvent'; 
+import CreateRSOEvents from './pages/createRSOEvent';
 
 function App() {
   return (
@@ -25,8 +29,12 @@ function App() {
     <Route path='/super' element={<SuperAdmin/>}/> 
     <Route path='/events' element={<Events/>}/> 
     <Route path='/rsoEvents' element={<RSOEvents/>}/> 
-    <Route path='/universityEvents' element={<UniversityEvents/>}/> 
-    <Route path='/createEvents' element={<CreateEvents/>}/>
+    <Route path='/MyEvents' element={<MyEvents/>}/> 
+    <Route path='/createEvents' element={<CreateEvents/>}/> 
+    <Route path='/singleEvent' element={<SingleEvents/>}/> 
+    <Route path='/createPublicEvent' element={<CreatePublicEvents/>}/> 
+    <Route path='/createPrivateEvent' element={<CreatePrivateEvents/>}/>  
+    <Route path='/createRSOEvent' element={<CreateRSOEvents/>}/> 
     </Routes>
     </BrowserRouter>
   );

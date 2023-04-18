@@ -1,0 +1,14 @@
+.titleButton {
+    background-color: transparent; 
+    font-size: xx-large; 
+    color: gold; 
+    border: transparent;
+} 
+
+.titleButton:hover {
+    background-color: transparent; 
+    font-size: xx-large; 
+    color: #CBA328; 
+    border: transparent; 
+    cursor: pointer;
+} 

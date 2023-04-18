@@ -1,12 +1,12 @@
 import '../stylesheets/App.css'
 import '../stylesheets/home.css'
-import Navbar from '../components/navbar';
-function CreateEvents() { 
+import EventsNavbar from '../components/eventsNavBar';
+function CreateRSOEvents() { 
 return (  
     <div className='container'>
-          <Navbar />
+          <EventsNavbar />
     <h1 className='title'>Create an Event</h1> 
     </div>
 )
 } 
-export default CreateEvents;
+export default CreateRSOEvents;

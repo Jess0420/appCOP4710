@@ -1,20 +1,31 @@
 import '../stylesheets/App.css'
 import '../stylesheets/home.css' 
 import '../stylesheets/posts.css'
-import Navbar from '../components/navbar'; 
+import EventsNavbar from '../components/eventsNavBar';
 import { useState } from 'react'; 
-import { useLocation } from 'react-router-dom'; 
+import { useLocation, useNavigate } from 'react-router-dom'; 
 import Axios from 'axios';
-import { useEffect } from 'react';
+import { useEffect } from 'react'; 
+import '../stylesheets/events.css' 
+
 
 const PORT = 8080;
 
-function UniversityEvents() {   
+function MyEvents() {   
     const location = useLocation();
     const user = location.state?.user_info
 
     const [events, setEvents] = useState([]);    
-    const id = user.user_id
+    const id = user.user_id 
+
+    
+  let navigate = useNavigate();
+
+  const routeToSingleEvent = () => {
+    navigate("/singleEvent");
+  };
+
+
     useEffect(() => { 
         Axios.get('http://localhost:' + PORT + '/api/userevents/:id', {
             user_id: id, 
@@ -29,19 +40,20 @@ function UniversityEvents() {
 
     return (
         <div className='container'>
-        <Navbar/>
+        <EventsNavbar/>
       <h1 className='title'> {user.firstname}'s Events</h1>
       <div className="post-container">
      
         {events.map(event => (
           <div className="post" key={event.id}>
             <div className="post-header">
-              <h2>{event.name}</h2> 
+              <button className='titleButton' onClick={routeToSingleEvent}>{event.name}</button> 
               <p>{event.date}</p>
             </div>
             <div className="post-body">
               <h3>{event.location_name}</h3>
-              <p>{event.description}</p>
+              <p>{event.description}</p> 
+              
             </div>
           </div>
         ))}
@@ -49,4 +61,4 @@ function UniversityEvents() {
       </div>
     );
 }
-export default UniversityEvents;
+export default MyEvents;
