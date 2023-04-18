@@ -13,7 +13,7 @@ function Events() {
 const [events, setEvents] = useState([]);  
 
 useEffect(() => { 
-    Axios.get('http://localhost:' + PORT + '/api/userevents/:id')
+    Axios.get('http://localhost:' + PORT + '/api/publicevents')
       .then(response => {
         setEvents(response.data);
       })
