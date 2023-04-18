@@ -16,13 +16,15 @@ function MyEvents() {
     const user = location.state?.user_info
 
     const [events, setEvents] = useState([]);    
-    const id = user.user_id 
+    const id = user.user_id   
+
+  
 
     
   let navigate = useNavigate();
 
-  const routeToSingleEvent = () => {
-    navigate("/singleEvent");
+  const routeToSingleEvent = (eventId) => {
+    navigate("/singleEvent", { state: { eventId } });
   };
 
 
@@ -31,7 +33,8 @@ function MyEvents() {
             user_id: id, 
         }).then(response => {
             setEvents(response.data);  
-            console.log(response.data)
+            console.log(response.data) 
+            console.log(response.data.event_id)
           })
           .catch(error => {
             console.log(error);
@@ -47,7 +50,8 @@ function MyEvents() {
         {events.map(event => (
           <div className="post" key={event.id}>
             <div className="post-header">
-              <button className='titleButton' onClick={routeToSingleEvent}>{event.name}</button> 
+            <button className='titleButton' onClick={() => routeToSingleEvent(event.id)}>{event.name}</button>
+
               <p>{event.date}</p>
             </div>
             <div className="post-body">

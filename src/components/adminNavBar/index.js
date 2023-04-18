@@ -32,9 +32,9 @@ const AdminNavbar = () => {
                     <NavLink to={ university_route } state={user_dict} activeClassName="active">
                         MyEvents
                     </NavLink>
-                    <NavLink to="/createEvents" activeStyle>
+                    {/* <NavLink to="/createEvents" activeStyle>
                         Create an Event                        
-                    </NavLink> 
+                    </NavLink>  */}
 
                 </NavMenu>
                 {/* <NavBtn>
