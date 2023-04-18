@@ -106,3 +106,27 @@ export async function getSingleEvent(event_id){
     const [event] = await pool.query(`SELECT * FROM events WHERE event_id = ?`,event_id)
     return event[0];
 }
+export async function checkAdmin(user_id){
+    const user = await pool.query(`SELECT * FROM users WHERE user_id = ? AND (user_level = 'admin' OR user_level = 'super_admin') `, user_id)
+    return user[0];
+}
+
+export async function createUniEvent(event_name,  category, description, time, date, location_name, contact_phone, contact_email, is_public,host_university){
+    const result = await pool.query(`
+    INSERT INTO events( name, category, description, date, time, location_name, contact_phone, contact_email, is_public, is_approved, host_university)
+    VALUES (? , ? , ? , ? ,?, ?, ? , ? , ? , ? , ?)` , [event_name, category, description, date, time, location_name, contact_phone, contact_email, is_public, 1 , host_university])
+    return result
+}
+
+export async function createRSOEvent(event_name,  category, description, time, date, location_name, contact_phone, contact_email, rso_id, is_approved){
+    const result = await pool.query(`
+    INSERT INTO events( name, category, description, date, time, location_name, contact_phone, contact_email, is_public, is_approved, rso_id)
+    VALUES (? , ? , ? , ? ,?, ?, ? , ? , ? , ?, ?)` , [event_name, category, description, date, time, location_name, contact_phone, contact_email, 0, is_approved , rso_id])
+    return result
+}
+export async function createPublicevent(event_name,  category, description, time, date, location_name, contact_phone, contact_email){
+    const result = await pool.query(`
+    INSERT INTO events( name, category, description, date, time, location_name, contact_phone, contact_email, is_public)
+    VALUES (? , ? , ? , ? ,?, ?, ? , ? , ? )` , [event_name, category, description, date, time, location_name, contact_phone, contact_email, 1])
+    return result
+}

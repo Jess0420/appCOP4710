@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import  {getUser, login , register, getPublicEvents, getUserEvents, getUniversities, getSingleEvent, getEventComments, getEventsByRSO, joinRSO} from './database.js'
+import  {getUser, login , register, getPublicEvents, getUserEvents, getUniversities, getSingleEvent, getEventComments, getEventsByRSO, joinRSO, createPublicevent, createRSOEvent, createUniEvent, checkAdmin} from './database.js'
 
 const app = express()
 app.use(express.json())
@@ -131,5 +131,31 @@ app.post('/api/createrso', (req, res) => {
 
   // Find university domain from admin email
   const domain = email.split('@')[1];
+
+});
+app.post('/api/createevent', (req, res) => {
+  const { user_id, event_name,  category, description, time, date, location_name, contact_phone, contact_email, is_public, host_university , rsoId, is_approved} = req.body;
+
+  if(!user_id || !event_name || !category || !description || !time || !date || !location_name || !contact_phone || !contact_email || !is_public){
+    res.status(400).send('Missing required fields');
+    return;
+  }
+  if(checkAdmin(user_id) === undefined){
+    return res.status(401).json({ message: 'User is not an admin' });
+  }
+
+  if(!rsoId){
+    const result = createUniEvent(event_name,  category, description, time, date, location_name, contact_phone, contact_email, is_public, host_university )
+    res.status(201).send(result);
+  }
+  if(!host_university){
+    const result = createRSOEvent(event_name,  category, description, time, date, location_name, contact_phone, contact_email,rsoId, is_approved )
+    res.status(201).send(result);
+  }
+  if(!rsoId && !host_university){
+    const result = createPublicEvent(event_name,  category, description, time, date, location_name, contact_phone, contact_email )
+    res.status(201).send(result);
+    return;
+  }
 
 });
