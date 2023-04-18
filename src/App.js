@@ -10,7 +10,7 @@ import Admin from './pages/admin';
 import SuperAdmin from './pages/superadmin'; 
 import Events from './pages/events'; 
 import RSOEvents from './pages/rsoEvents';
-import UniverstiyEvents from './pages/universityEvents';
+import UniversityEvents from './pages/universityEvents';
 
 function App() {
   return (
@@ -24,7 +24,7 @@ function App() {
     <Route path='/super' element={<SuperAdmin/>}/> 
     <Route path='/events' element={<Events/>}/> 
     <Route path='/rsoEvents' element={<RSOEvents/>}/> 
-    <Route path='/universityEvents' element={<UniverstiyEvents/>}/>
+    <Route path='/universityEvents' element={<UniversityEvents/>}/>
     </Routes>
     </BrowserRouter>
   );

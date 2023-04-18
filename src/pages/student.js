@@ -1,18 +1,23 @@
 import '../stylesheets/App.css'
 import '../stylesheets/home.css' 
-import StudentNavbar from '../components/studentNavBar'; 
+import StudentNavbar from '../components/studentNavBar';  
+import UserContext from '../components/UserContext';
 import { useLocation } from 'react-router-dom';
 
 function Students() {  
-    const location = useLocation(); 
-    const username = location.state?.username; 
+    const location = useLocation();  
+    console.log(location.state);
+    const user = location.state.user; 
 
-return (   
-    <div> 
-        <StudentNavbar/>
-    <h1 className='text'>Welcome, {username}!</h1>  
-    <h2>Here are your RSO Events</h2>
-    </div>
+return (    
+    <UserContext.Provider value={user}>
+    <div className='container'> 
+        <StudentNavbar user={user}/>
+    <h1 className='title'>Welcome, {user.firstname}!</h1>  
+    <h2 className='title'>Click on the MyEvents tab to see all of your events</h2>
+   
+    </div> 
+    </UserContext.Provider>
 )
 } 
 export default Students;

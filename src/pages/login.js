@@ -1,79 +1,92 @@
-import React, {useState} from "react";  
-import  Axios  from "axios";
-import { useNavigate } from "react-router-dom"; 
-import '../stylesheets/login.css'  
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import "../stylesheets/login.css";
 import Navbar from "../components/navbar";
 
 const PORT = 8080;
 
-function Login() {  
-    const [username, setUsername] = useState(""); 
-    const [password, setPassword] = useState("");     
-    const [user_level, setuser_Level] = useState(""); 
-    const [isLoggedIn, setLoggedIn] = useState(""); 
+function Login() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [user_level, setuser_Level] = useState("");
+  const [isLoggedIn, setLoggedIn] = useState("");
+  const [university, setUniversity] = useState("");
 
-    let navigate = useNavigate()
+  let navigate = useNavigate();
 
-    const routeToRegister = () => {
-      navigate('/register');
-    };  
+  const routeToRegister = () => {
+    navigate("/register");
+  };
 
-    let data = JSON.stringify({
-      username: username, 
-      password: password,  
-      user_level: user_level, 
-      
-    }) 
+  useEffect(() => {
+    console.log("university changed:", university);
+  }, [university]);
 
-    const loginAuth = () => {
-      Axios.post('http://localhost:' + PORT + '/api/login', {
-        username: username, 
-        password: password, 
-        headers: {'Content-Type': 'application/json'},
-      }).then((response) => {
-        console.log("Log in Succesful") 
-        setuser_Level(response.data.user_level) 
-        console.log("Role", user_level);  
-      
-        if (response.data.user_level === 'admin') {
-          navigate('/admin', { state: { username: username } });  
+  const loginAuth = () => {
+    fetch(`http://localhost:${PORT}/api/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: username,
+        password: password,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Log in Succesful");
+        console.log(data.university_id);
+        setuser_Level(data.user_level);
+        setUniversity(data.university_id);
+        console.log(university);
+        console.log("Role", user_level);
+  
+        if (data.user_level === "admin") {
+          navigate("/admin", { state: { username: username, university_id: university } });
+        } else if (data.user_level === "student") {
+          navigate("/student", { state: { user: data } }); // pass the user object as state parameter
+        } else if (data.user_level === "super_admin") {
+          navigate("/super");
         }
-        else if (response.data.user_level === 'student') {
-          navigate('/student', { state: { username: username } }); 
-        } 
-        else if (response.data.user_level === 'super_admin') {
-          navigate('/super');
-        }
-      }).catch(e => {
-        console.log(e);  
-        const errorMessage = e.response // assuming the server returns an error message in the "message" field of the response data
-      }); 
-
-   
-    }
-
-
-
-    return ( 
-        <div className='container'>
-          <Navbar/>
-        <h1 className="title">Account Login!</h1> 
-        <input type="text" 
-      className="loginField" 
-      placeholder="User Name"
-      onChange={(e) => {setUsername(e.target.value);
-      }}
+      })
+      .catch((e) => {
+        console.log(e);
+        const errorMessage = e.response; // assuming the server returns an error message in the "message" field of the response data
+      });
+  
+    console.log(university);
+    console.log("Role", user_level);
+  }; 
+  
+  return (
+    <div className="container">
+      <Navbar />
+      <h1 className="title">Account Login!</h1>
+      <input
+        type="text"
+        className="loginField"
+        placeholder="User Name"
+        onChange={(e) => {
+          setUsername(e.target.value);
+        }}
       ></input>
-      <input type="password" className="loginField" 
-      placeholder="Password" 
-       onChange={(e) => {setPassword(e.target.value);
-       }}></input>
-      <button onClick={loginAuth} className= "loginButton">Login</button> 
-      <button className="regButton" onClick={routeToRegister}>New here? Click here to register</button>
-    
-        </div>
-    )
-    
+      <input
+        type="password"
+        className="loginField"
+        placeholder="Password"
+        onChange={(e) => {
+          setPassword(e.target.value);
+        }}
+      ></input>
+      <button onClick={loginAuth} className="loginButton">
+        Login
+      </button>
+      <button className="regButton" onClick={routeToRegister}>
+        New here? Click here to register
+      </button>
+    </div>
+  );
+}
 
-    } 
-    export default Login; 
+export default Login;
