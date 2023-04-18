@@ -10,7 +10,8 @@ import Admin from './pages/admin';
 import SuperAdmin from './pages/superadmin'; 
 import Events from './pages/events'; 
 import RSOEvents from './pages/rsoEvents';
-import UniversityEvents from './pages/universityEvents';
+import UniversityEvents from './pages/universityEvents'; 
+import CreateEvents from './pages/createEvents';
 
 function App() {
   return (
@@ -24,7 +25,8 @@ function App() {
     <Route path='/super' element={<SuperAdmin/>}/> 
     <Route path='/events' element={<Events/>}/> 
     <Route path='/rsoEvents' element={<RSOEvents/>}/> 
-    <Route path='/universityEvents' element={<UniversityEvents/>}/>
+    <Route path='/universityEvents' element={<UniversityEvents/>}/> 
+    <Route path='/createEvents' element={<CreateEvents/>}/>
     </Routes>
     </BrowserRouter>
   );

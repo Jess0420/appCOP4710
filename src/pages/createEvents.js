@@ -3,9 +3,9 @@ import '../stylesheets/home.css'
 import Navbar from '../components/navbar';
 function CreateEvents() { 
 return (  
-    <div className='home'>
+    <div className='container'>
           <Navbar />
-    <h1 className='text'>Public Events</h1> 
+    <h1 className='title'>Create an Event</h1> 
     </div>
 )
 } 
