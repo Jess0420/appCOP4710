@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import  Axios  from 'axios'; 
 import { useState } from 'react';
 import "../stylesheets/event.css";
+import EventsNavbar from '../components/eventsNavBar';
 
 const PORT = 8080; 
 
@@ -43,6 +44,8 @@ function SingleEvents() {
         }, []);
 
 return(
+  <div>
+    <EventsNavbar/>
   <div className="event-page">
     <div className="event-header">
       <h1 className="event-title">{event.name}</h1>
@@ -102,6 +105,7 @@ return(
       </form>
 
     </div>
+  </div>
   </div>
 );
 } 

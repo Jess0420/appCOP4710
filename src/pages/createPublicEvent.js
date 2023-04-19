@@ -57,7 +57,7 @@ function CreatePublicEvents() {
           const errorMessage = e.response // assuming the server returns an error message in the "message" field of the response data
         });  
 
-        navigate("/myEvents", {state: {user: user}})
+        navigate("/myEvents", {state: {user_info: user}})
   
       }
 
