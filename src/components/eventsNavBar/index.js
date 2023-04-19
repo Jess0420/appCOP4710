@@ -31,9 +31,7 @@ const EventsNavbar = () => {
                     <NavLink to="/events" activeStyle>
                         Public Events
                     </NavLink> 
-                    <NavLink to={ university_route } state={user_dict} activeClassName="active">
-                        MyEvents
-                    </NavLink> 
+                 
                 </NavMenu>
 
                    

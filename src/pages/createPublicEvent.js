@@ -4,7 +4,8 @@ import  Axios  from "axios";
 import { useState } from 'react';
 import EventsNavbar from '../components/eventsNavBar'; 
 import UserContext from '../components/UserContext';
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom'; 
+import Navbar from '../components/navbar';
 
 const PORT = 8080;
 
@@ -99,7 +100,7 @@ return (
          <input
         type="text"
         className="loginField"
-        placeholder="Date"
+        placeholder="YYYY-MM-DD"
         onChange={(e) => {
           setDate(e.target.value);
         }}

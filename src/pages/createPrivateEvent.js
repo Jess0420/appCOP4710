@@ -46,7 +46,6 @@ function CreatePrivateEvents() {
           location_name: location_name, 
           contact_phone: contact_phone,
           contact_email: contact_email, 
-          is_public: public_, 
           host_university: uniID,
           headers: { 'Content-Type': 'application/json' },
         }).then((response) => {
@@ -111,7 +110,7 @@ return (
          <input
         type="text"
         className="loginField"
-        placeholder="Date"
+        placeholder="yyyy-dd-mm"
         onChange={(e) => {
           setDate(e.target.value);
         }}
