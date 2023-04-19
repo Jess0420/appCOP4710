@@ -31,11 +31,12 @@ const EventsNavbar = () => {
                     <NavLink to="/events" activeStyle>
                         Public Events
                     </NavLink> 
-                   
+                 
                 </NavMenu>
 
-                <NavBtn onClick={() => navigate(-1)}>
-                    Go Back
+                   
+                   
+                <NavBtn onClick={() => navigate(-1)}> Go Back
      
                 </NavBtn>
             </Nav>

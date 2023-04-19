@@ -14,7 +14,7 @@ const AdminNavbar = () => {
     const user = useContext(UserContext);
     console.log(user);
     
-    const university_route = {
+    const my_event_route = {
         pathname: '/MyEvents'
     };
     const user_dict = {
@@ -29,7 +29,7 @@ const AdminNavbar = () => {
                     <NavLink to="/events" activeStyle>
                         Public Events
                     </NavLink> 
-                    <NavLink to={ university_route } state={user_dict} activeClassName="active">
+                    <NavLink to={ my_event_route } state={user_dict} activeClassName="active">
                         MyEvents
                     </NavLink>
                     {/* <NavLink to="/createEvents" activeStyle>

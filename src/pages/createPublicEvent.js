@@ -1,22 +1,30 @@
 import '../stylesheets/App.css'
 import '../stylesheets/home.css'  
-import { Axios } from 'axios';
+import  Axios  from "axios";
 import { useState } from 'react';
 import EventsNavbar from '../components/eventsNavBar'; 
 import UserContext from '../components/UserContext';
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom'; 
+import Navbar from '../components/navbar'; 
+
+import { useNavigate } from 'react-router-dom';
 
 const PORT = 8080;
 
-function CreatePublicEvents() { 
+function CreatePublicEvents() {  
 
+    let navigate = useNavigate();
+
+    
     const location = useLocation();  
     console.log(location.state);  
     const user = location.state.user; 
-    console.log(user.user_id);
- 
 
-     const id = user.user_id 
+    
+    const id = user.user_id 
+    console.log(id);
+ const public_ = 1; 
+
 
     const [event_name, setEvent_name] = useState("");
     const [category, setCategory] = useState("");
@@ -38,15 +46,18 @@ function CreatePublicEvents() {
           time: time,
           location_name: location_name, 
           contact_phone: contact_phone,
-          contact_email: contact_email,
-          headers: { 'Content-Type': 'application/json' },
+          contact_email: contact_email, 
+          is_public: public_,
         }).then((response) => {
           console.log("Event added")
-          console.log(response);
+          console.log(response); 
+          
         }).catch(e => {
           console.log(e);  
           const errorMessage = e.response // assuming the server returns an error message in the "message" field of the response data
-        }); 
+        });  
+
+        navigate("/myEvents", {state: {user: user}})
   
       }
 
@@ -95,7 +106,7 @@ return (
          <input
         type="text"
         className="loginField"
-        placeholder="Date"
+        placeholder="YYYY-MM-DD"
         onChange={(e) => {
           setDate(e.target.value);
         }}
