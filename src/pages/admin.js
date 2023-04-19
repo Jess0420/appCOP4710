@@ -26,11 +26,11 @@ function Admin() {
   }; 
 
   const routeToCreatePrivateEvents = () => {
-    navigate("/createPrivateEvent");
+    navigate("/createPrivateEvent", {state: { user: user } });
   }; 
 
   const routeToCreateRSOEvents = () => {
-    navigate("/createRSOEvent");
+    navigate("/createRSOEvent", {state: { user: user } });
   }; 
 
 

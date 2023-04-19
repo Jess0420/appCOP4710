@@ -1,6 +1,6 @@
 import '../stylesheets/App.css'
 import '../stylesheets/home.css'  
-import { Axios } from 'axios';
+import  Axios  from "axios";
 import { useState } from 'react';
 import EventsNavbar from '../components/eventsNavBar'; 
 import UserContext from '../components/UserContext';
@@ -10,13 +10,16 @@ const PORT = 8080;
 
 function CreatePublicEvents() { 
 
+    
     const location = useLocation();  
     console.log(location.state);  
     const user = location.state.user; 
-    console.log(user.user_id);
- 
 
-     const id = user.user_id 
+    
+    const id = user.user_id 
+    console.log(id);
+ const public_ = 1; 
+
 
     const [event_name, setEvent_name] = useState("");
     const [category, setCategory] = useState("");
@@ -38,7 +41,8 @@ function CreatePublicEvents() {
           time: time,
           location_name: location_name, 
           contact_phone: contact_phone,
-          contact_email: contact_email,
+          contact_email: contact_email, 
+          is_public: public_,
           headers: { 'Content-Type': 'application/json' },
         }).then((response) => {
           console.log("Event added")

@@ -6,7 +6,8 @@ import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom'; 
 import Axios from 'axios';
 import { useEffect } from 'react'; 
-import '../stylesheets/events.css' 
+import '../stylesheets/events.css'  
+import Navbar from '../components/navbar';
 
 
 const PORT = 8080;
@@ -14,9 +15,10 @@ const PORT = 8080;
 function MyEvents() {   
     const location = useLocation();
     const user = location.state?.user_info
-
+    console.log(user)
+    const id = user.user_info   
     const [events, setEvents] = useState([]);    
-    const id = user.user_id   
+    
 
   
 
@@ -43,7 +45,7 @@ function MyEvents() {
 
     return (
         <div className='container'>
-        <EventsNavbar/>
+        <Navbar/>
       <h1 className='title'> {user.firstname}'s Events</h1>
       <div className="post-container">
      
