@@ -50,7 +50,7 @@ function MyEvents() {
         {events.map(event => (
           <div className="post" key={event.id}>
             <div className="post-header">
-            <button className='titleButton' onClick={() => routeToSingleEvent(event.id)}>{event.name}</button>
+            <button className='titleButton' onClick={() => routeToSingleEvent(event.event_id)}>{event.name}</button>
 
               <p>{event.date}</p>
             </div>
