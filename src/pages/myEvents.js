@@ -45,7 +45,7 @@ function MyEvents() {
 
     return (
         <div className='container'>
-        <Navbar/>
+        <EventsNavbar/>
       <h1 className='title'> {user.firstname}'s Events</h1>
       <div className="post-container">
      

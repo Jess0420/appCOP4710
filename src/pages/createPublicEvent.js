@@ -5,11 +5,15 @@ import { useState } from 'react';
 import EventsNavbar from '../components/eventsNavBar'; 
 import UserContext from '../components/UserContext';
 import { useLocation } from 'react-router-dom'; 
-import Navbar from '../components/navbar';
+import Navbar from '../components/navbar'; 
+
+import { useNavigate } from 'react-router-dom';
 
 const PORT = 8080;
 
-function CreatePublicEvents() { 
+function CreatePublicEvents() {  
+
+    let navigate = useNavigate();
 
     
     const location = useLocation();  
@@ -44,14 +48,16 @@ function CreatePublicEvents() {
           contact_phone: contact_phone,
           contact_email: contact_email, 
           is_public: public_,
-          headers: { 'Content-Type': 'application/json' },
         }).then((response) => {
           console.log("Event added")
-          console.log(response);
+          console.log(response); 
+          
         }).catch(e => {
           console.log(e);  
           const errorMessage = e.response // assuming the server returns an error message in the "message" field of the response data
-        }); 
+        });  
+
+        navigate("/myEvents", {state: {user: user}})
   
       }
 

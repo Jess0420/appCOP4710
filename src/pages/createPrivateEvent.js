@@ -10,6 +10,8 @@ const PORT = 8080;
 
 function CreatePrivateEvents() { 
 
+    const [successMessage, setSuccessMessage] = useState('');
+
     const location = useLocation();  
     console.log(location.state);  
     const user = location.state.user; 
@@ -50,7 +52,8 @@ function CreatePrivateEvents() {
           headers: { 'Content-Type': 'application/json' },
         }).then((response) => {
           console.log("Event added")
-          console.log(response);
+          console.log(response); 
+          setSuccessMessage('Event added successfully!');
         }).catch(e => {
           console.log(e);   
           console.log(event_name) 
@@ -68,7 +71,8 @@ function CreatePrivateEvents() {
 return (  
     <div className='container'>
           <EventsNavbar />
-    <h1 className='title'>Create a Private Event</h1>  
+    <h1 className='title'>Create a Private Event</h1>   
+    <p>{successMessage}</p>
     <input
         type="text"
         className="loginField"
